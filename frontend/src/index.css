@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-medical-bg-primary text-medical-text-primary;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  * {
+    @apply border-medical-border;
+  }
+}
+
+@layer components {
+  /* Medical-grade glassmorphism card */
+  .glass-card {
+    @apply bg-medical-bg-secondary/80 backdrop-blur-md border border-medical-border rounded-lg shadow-xl;
+  }
+  
+  /* Professional button styles */
+  .btn-primary {
+    @apply bg-medical-accent-blue hover:bg-blue-600 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl active:scale-95;
+  }
+  
+  .btn-secondary {
+    @apply bg-medical-bg-tertiary hover:bg-medical-bg-tertiary/80 text-medical-text-primary font-medium px-4 py-2 rounded-lg transition-all duration-200 border border-medical-border hover:border-medical-accent-blue;
+  }
+  
+  .btn-icon {
+    @apply p-2 rounded-lg hover:bg-medical-bg-tertiary transition-all duration-200 cursor-pointer;
+  }
+  
+  /* Input styles */
+  .input-field {
+    @apply bg-medical-bg-tertiary border border-medical-border rounded-lg px-4 py-2 text-medical-text-primary placeholder-medical-text-muted focus:outline-none focus:ring-2 focus:ring-medical-accent-blue transition-all;
+  }
+  
+  /* Pathology badge */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+  }
+  
+  .badge-critical {
+    @apply bg-medical-accent-red/20 text-red-400 border border-medical-accent-red/40;
+  }
+  
+  .badge-moderate {
+    @apply bg-medical-accent-yellow/20 text-yellow-400 border border-medical-accent-yellow/40;
+  }
+  
+  .badge-normal {
+    @apply bg-medical-accent-green/20 text-green-400 border border-medical-accent-green/40;
+  }
+  
+  /* Loading animations */
+  .skeleton {
+    @apply animate-pulse bg-medical-bg-tertiary rounded;
+  }
+  
+  /* Scrollbar styling */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-medical-bg-secondary;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-medical-bg-tertiary rounded-full;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-medical-border;
+  }
+  
+  /* Chat message bubbles */
+  .message-user {
+    @apply bg-medical-accent-blue/20 border border-medical-accent-blue/40 rounded-2xl rounded-br-sm px-4 py-3 ml-auto max-w-[80%];
+  }
+  
+  .message-assistant {
+    @apply bg-medical-bg-tertiary border border-medical-border rounded-2xl rounded-bl-sm px-4 py-3 mr-auto max-w-[80%];
+  }
+}
+
+/* Smooth transitions */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Remove default button outlines */
+button:focus {
+  outline: none;
+}
+
+/* Professional focus rings */
+button:focus-visible,
+input:focus-visible {
+  @apply ring-2 ring-medical-accent-blue ring-offset-2 ring-offset-medical-bg-primary;
+}
