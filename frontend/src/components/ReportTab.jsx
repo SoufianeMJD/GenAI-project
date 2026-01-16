@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import { FileDown, Copy, ChevronDown, ChevronUp, Activity } from 'lucide-react';
+import { FileDown, Copy, ChevronDown, ChevronUp, Activity, FileText } from 'lucide-react';
 import jsPDF from 'jspdf';
 
 const getSeverityClass = (confidence) => {
@@ -15,10 +15,10 @@ export default function ReportTab({ analysisResult }) {
 
     if (!analysisResult) {
         return (
-            <div className="flex-1 flex items-center justify-center">
+            <div className="h-full flex items-center justify-center">
                 <div className="text-center text-medical-text-secondary">
                     <Activity className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                    <p>No report generated yet</p>
+                    <p className="text-lg">No report generated yet</p>
                     <p className="text-sm mt-2">Upload an X-ray to begin analysis</p>
                 </div>
             </div>
@@ -181,50 +181,9 @@ export default function ReportTab({ analysisResult }) {
                     </div>
                 </div>
 
-                {/* Similar Cases */}
-                {analysisResult.similar_cases && analysisResult.similar_cases.length > 0 && (
-                    <div className="glass-card overflow-hidden">
-                        <button
-                            onClick={() => setShowSimilarCases(!showSimilarCases)}
-                            className="w-full p-4 flex items-center justify-between hover:bg-medical-bg-tertiary/30 transition-colors"
-                        >
-                            <h3 className="text-lg font-semibold text-medical-text-primary">
-                                Similar Historical Cases ({analysisResult.similar_cases.length})
-                            </h3>
-                            {showSimilarCases ? (
-                                <ChevronUp className="w-5 h-5 text-medical-text-secondary" />
-                            ) : (
-                                <ChevronDown className="w-5 h-5 text-medical-text-secondary" />
-                            )}
-                        </button>
-
-                        {showSimilarCases && (
-                            <div className="p-4 pt-0 space-y-3 border-t border-medical-border">
-                                {analysisResult.similar_cases.map((case_item, idx) => (
-                                    <div
-                                        key={idx}
-                                        className="p-4 bg-medical-bg-tertiary rounded-lg border border-medical-border"
-                                    >
-                                        <div className="flex items-center justify-between mb-2">
-                                            <span className="text-sm font-medium text-medical-accent-blue">
-                                                Case #{case_item.rank}
-                                            </span>
-                                            <span className="text-xs text-medical-text-muted">
-                                                Similarity: {(case_item.similarity * 100).toFixed(1)}%
-                                            </span>
-                                        </div>
-                                        <p className="text-sm text-medical-text-secondary whitespace-pre-wrap">
-                                            {case_item.report}
-                                        </p>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                )}
 
                 {/* Metadata */}
-                <div className="text-sm text-medical-text-muted text-center pb-4">
+                <div className="text-sm text-medical-text-muted text-center">
                     Analysis completed in {analysisResult.processing_time?.toFixed(2)}s
                 </div>
             </div>

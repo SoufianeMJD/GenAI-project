@@ -139,13 +139,13 @@ Answer questions clearly and professionally. Base your responses on medical know
         
         prompt = f"{system_prompt}\n\n"
         
-        # Add conversation history
+        # Add conversation history without adding extra role labels
+        # (the frontend already handles showing roles)
         for msg in history[-6:]:  # Keep last 6 messages for context
-            role = msg.get("role", "user")
             content = msg.get("content", "")
-            prompt += f"**{role.title()}:** {content}\n\n"
+            prompt += f"{content}\n\n"
         
-        prompt += f"**User:** {user_input}\n\n**Assistant:**"
+        prompt += f"{user_input}\n\nAssistant:"
         
         return prompt
     

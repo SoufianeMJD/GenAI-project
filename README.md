@@ -1,4 +1,4 @@
-# 🏥 Multimodal Radiological AI Assistant
+# Multimodal Radiological AI Assistant
 
 A sophisticated medical imaging analysis system that combines Computer Vision, Retrieval-Augmented Generation (RAG), and Large Language Models to provide professional radiological reports from chest X-rays.
 
@@ -6,7 +6,7 @@ A sophisticated medical imaging analysis system that combines Computer Vision, R
 ![Backend](https://img.shields.io/badge/Backend-FastAPI%20%2B%20PyTorch-green)
 ![Frontend](https://img.shields.io/badge/Frontend-React%20%2B%20Tailwind-purple)
 
-## 🎯 Features
+## Features
 
 ### Vision Module
 - **TorchXRayVision DenseNet121** for pathology detection
@@ -24,16 +24,19 @@ A sophisticated medical imaging analysis system that combines Computer Vision, R
 - Interactive chat assistant for case discussion
 
 ### Frontend
-- Medical-grade dark mode UI with glassmorphism
-- Drag-and-drop X-ray upload
-- Advanced image viewer with zoom/pan controls
-- Real-time multi-stage analysis progress
-- PDF export functionality
-- ChatGPT-style medical assistant
+- **Modern Professional UI**: Medical-grade dark mode with glassmorphic design
+- **Responsive Layout**: Two-column grid with proper scrolling hierarchy
+- **Image Upload**: Drag-and-drop X-ray upload with preview
+- **Advanced Viewer**: Image zoom/pan controls using react-zoom-pan-pinch
+- **Progress Tracking**: Real-time multi-stage analysis progress indicators
+- **Report Display**: Markdown-rendered structured reports with confidence badges
+- **Similar Cases**: Full-width scrollable section displaying historical case matches
+- **Chat Assistant**: Persistent ChatGPT-style medical assistant with context awareness
+- **Export Options**: PDF export and clipboard copy functionality
 
 ---
 
-## 📋 Prerequisites
+## Prerequisites
 
 ### System Requirements
 - **OS**: Windows 10/11, Linux, or macOS
@@ -48,7 +51,7 @@ A sophisticated medical imaging analysis system that combines Computer Vision, R
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### Step 1: Clone or Navigate to Project
 
@@ -120,7 +123,7 @@ npm install
 
 ---
 
-## 🎬 Running the Application
+## Running the Application
 
 ### Start Backend Server
 
@@ -172,7 +175,7 @@ http://localhost:5173
 
 ---
 
-## 📊 Dataset Configuration
+## Dataset Configuration
 
 The system automatically downloads the **Indiana University Chest X-rays** dataset on first use via kagglehub.
 
@@ -196,7 +199,7 @@ This will:
 
 ---
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 GenAI Project LLM+RAG/
@@ -234,7 +237,7 @@ GenAI Project LLM+RAG/
 
 ---
 
-## 🎨 Usage Guide
+## Usage Guide
 
 ### 1. Upload X-Ray Image
 - Drag and drop an X-ray image onto the left panel
@@ -261,7 +264,7 @@ The system performs three stages:
 
 ---
 
-## 🔧 Configuration
+## Configuration
 
 ### Backend Configuration (`backend/config.py`)
 
@@ -295,7 +298,7 @@ You can switch to different medical models by editing `config.py`:
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### GPU Out of Memory
 
@@ -344,7 +347,7 @@ Models are downloaded from HuggingFace. First-time setup requires:
 
 ---
 
-## 📊 API Endpoints
+## API Endpoints
 
 ### GET `/`
 Health check endpoint
@@ -368,7 +371,7 @@ Manually initialize RAG index
 
 ---
 
-## 🔒 Important Notes
+## Important Notes
 
 ### Medical Disclaimer
 
@@ -393,7 +396,7 @@ Manually initialize RAG index
 
 ---
 
-## 🚀 Production Deployment
+## Production Deployment
 
 For production use:
 
@@ -416,7 +419,7 @@ For production use:
 
 ---
 
-## 📈 Future Enhancements
+## Future Enhancements
 
 - [ ] Multi-modal image support (CT, MRI)
 - [ ] User authentication and case history
@@ -427,7 +430,7 @@ For production use:
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 This is a research/educational project. Contributions are welcome:
 
@@ -438,7 +441,7 @@ This is a research/educational project. Contributions are welcome:
 
 ---
 
-## 📄 License
+## License
 
 This project uses multiple open-source libraries and models:
 - TorchXRayVision: Apache 2.0
@@ -448,7 +451,7 @@ This project uses multiple open-source libraries and models:
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **TorchXRayVision** by mlmed
 - **Indiana University** for the chest X-ray dataset
@@ -457,11 +460,11 @@ This project uses multiple open-source libraries and models:
 
 ---
 
-## 📞 Support
+## Support
 
 For issues or questions:
 - Check the troubleshooting section
 - Review console logs for detailed error messages
 - Ensure all dependencies are correctly installed
 
-**Developed with ❤️ for advancing medical AI research**
+**Developed for advancing medical AI research**

@@ -3,13 +3,7 @@ import { Send, MessageCircle, Loader2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { sendChatMessage } from '../services/api';
 
-export default function ChatTab({ analysisResult }) {
-    const [messages, setMessages] = useState([
-        {
-            role: 'assistant',
-            content: 'Hello! I\'m your AI medical assistant. I can help answer questions about the current X-ray analysis. What would you like to know?'
-        }
-    ]);
+export default function ChatTab({ analysisResult, chatHistory, setChatHistory }) {
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const messagesEndRef = useRef(null);
@@ -20,7 +14,7 @@ export default function ChatTab({ analysisResult }) {
 
     useEffect(() => {
         scrollToBottom();
-    }, [messages]);
+    }, [chatHistory]);
 
     const handleSend = async () => {
         if (!input.trim() || isLoading) return;
@@ -29,8 +23,8 @@ export default function ChatTab({ analysisResult }) {
         setInput('');
 
         // Add user message
-        const newMessages = [...messages, { role: 'user', content: userMessage }];
-        setMessages(newMessages);
+        const newMessages = [...chatHistory, { role: 'user', content: userMessage }];
+        setChatHistory(newMessages);
         setIsLoading(true);
 
         try {
@@ -40,10 +34,10 @@ export default function ChatTab({ analysisResult }) {
                 const findingsStr = analysisResult.findings
                     .map(f => `${f.name} (${(f.confidence * 100).toFixed(0)}%)`)
                     .join(', ');
-                caseContext = `Current case findings: ${findingsStr}\n\n`;
+                caseContext = `Current case findings: ${findingsStr} \n\n`;
             }
             if (analysisResult?.generated_report) {
-                caseContext += `Report:\n${analysisResult.generated_report.substring(0, 500)}...`;
+                caseContext += `Report: \n${analysisResult.generated_report.substring(0, 500)}...`;
             }
 
             // Send to backend
@@ -54,12 +48,12 @@ export default function ChatTab({ analysisResult }) {
             );
 
             if (response.success) {
-                setMessages([
+                setChatHistory([
                     ...newMessages,
                     { role: 'assistant', content: response.response }
                 ]);
             } else {
-                setMessages([
+                setChatHistory([
                     ...newMessages,
                     {
                         role: 'assistant',
@@ -69,7 +63,7 @@ export default function ChatTab({ analysisResult }) {
             }
         } catch (error) {
             console.error('Chat error:', error);
-            setMessages([
+            setChatHistory([
                 ...newMessages,
                 {
                     role: 'assistant',
@@ -96,9 +90,9 @@ export default function ChatTab({ analysisResult }) {
     ];
 
     return (
-        <div className="flex-1 flex flex-col overflow-hidden">
+        <div className="h-full flex flex-col">
             {/* Header */}
-            <div className="p-4 border-b border-medical-border bg-medical-bg-tertiary/30">
+            <div className="p-4 border-b border-medical-border bg-medical-bg-tertiary/30 flex-shrink-0">
                 <h2 className="text-lg font-semibold text-medical-text-primary flex items-center gap-2">
                     <MessageCircle className="w-5 h-5" />
                     Medical Assistant Chat
@@ -110,9 +104,9 @@ export default function ChatTab({ analysisResult }) {
                 )}
             </div>
 
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-4">
-                {messages.map((message, idx) => (
+            {/* Messages - Scrollable Area */}
+            <div className="flex-1 overflow-y-auto p-6 space-y-4 custom-scrollbar">
+                {chatHistory.map((message, idx) => (
                     <div
                         key={idx}
                         className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
@@ -153,9 +147,9 @@ export default function ChatTab({ analysisResult }) {
                 <div ref={messagesEndRef} />
             </div>
 
-            {/* Suggested Questions (only show if no messages yet) */}
-            {messages.length === 1 && analysisResult && (
-                <div className="px-6 pb-4">
+            {/* Suggested Questions - Only show if no messages yet and has results */}
+            {chatHistory.length === 1 && analysisResult && (
+                <div className="px-6 pb-4 flex-shrink-0">
                     <p className="text-sm text-medical-text-muted mb-2">Suggested questions:</p>
                     <div className="flex flex-wrap gap-2">
                         {suggestedQuestions.map((question, idx) => (
@@ -171,8 +165,8 @@ export default function ChatTab({ analysisResult }) {
                 </div>
             )}
 
-            {/* Input */}
-            <div className="p-4 border-t border-medical-border bg-medical-bg-tertiary/30">
+            {/* Input - Sticky at Bottom */}
+            <div className="p-4 border-t border-medical-border bg-medical-bg-tertiary/30 flex-shrink-0">
                 <div className="flex gap-2">
                     <input
                         type="text"
