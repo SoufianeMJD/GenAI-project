@@ -1,31 +1,31 @@
 # Multimodal Radiological AI Assistant - Backend Dependencies
 
 # Core Framework
-fastapi==0.104.1
-uvicorn[standard]==0.24.0
-python-multipart==0.0.6
-pydantic==2.5.0
+fastapi>=0.108.0
+uvicorn[standard]>=0.25.0
+python-multipart>=0.0.6
+pydantic>=2.5.0
 
 # Deep Learning & Vision
 torch>=2.0.0
 torchvision>=0.15.0
-torchxrayvision==1.2.1
+torchxrayvision>=1.2.0
 
 # NLP & Transformers
-transformers==4.36.0
-sentence-transformers==2.2.2
-accelerate==0.25.0
-bitsandbytes==0.41.3
+transformers>=4.36.0
+sentence-transformers>=2.2.0
+accelerate>=0.25.0
+bitsandbytes>=0.41.0
 
 # RAG & Search
-faiss-cpu==1.7.4
-# faiss-gpu==1.7.4  # Uncomment for GPU-accelerated FAISS
+faiss-cpu==1.13.2
+# faiss-gpu==1.13.2  # Uncomment for GPU-accelerated FAISS
 
 # Data Processing
-pandas==2.1.4
-numpy==1.24.3
-scikit-image==0.22.0
-Pillow==10.1.0
+pandas>=2.2.0
+numpy>=1.26.0
+scikit-image>=0.24.0
+Pillow>=10.1.0
 
 # Dataset
 kagglehub==0.2.5

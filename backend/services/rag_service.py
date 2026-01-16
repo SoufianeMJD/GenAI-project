@@ -37,7 +37,9 @@ class RAGService:
         """Download the Indiana University dataset using kagglehub"""
         print("[RAG] Downloading Indiana University Chest X-rays dataset...")
         try:
-            path = kagglehub.dataset_download(DATASET_CONFIG["kaggle_dataset"])
+            # Use exact code from Kaggle website
+            path = kagglehub.dataset_download("raddar/chest-xrays-indiana-university")
+            
             self.dataset_path = Path(path)
             print(f"[RAG] Dataset downloaded to: {path}")
             
@@ -48,6 +50,11 @@ class RAGService:
                     print(f"  - {item.relative_to(self.dataset_path)}")
             
             return path
+        except AttributeError as e:
+            print(f"[RAG] kagglehub AttributeError: {str(e)}")
+            print(f"[RAG] Available kagglehub methods: {[x for x in dir(kagglehub) if not x.startswith('_')]}")
+            print("[RAG] Please reinstall kagglehub: pip install --upgrade kagglehub")
+            raise
         except Exception as e:
             print(f"[RAG] Error downloading dataset: {str(e)}")
             raise
